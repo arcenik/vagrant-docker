@@ -11,8 +11,11 @@ export v="docker run -ti --rm \
 -v /run/libvirt/libvirt-sock:/run/libvirt/libvirt-sock \
 -v ~/.vagrant.d:/home/vagrant/.vagrant.d \
 -v .:/data \
+--network host \
 francois75/vagrant:latest"
 ```
+
+Or use the provided **v** script
 
 Use Vagrant a normal
 
@@ -20,4 +23,12 @@ Use Vagrant a normal
 v up
 v ssh
 v box list
+```
+
+## Special case
+
+For ssh-config command, you need to replace the container folder with the current path
+
+```sh
+v ssh-config | sed "s,/data,$(pwd),"
 ```
